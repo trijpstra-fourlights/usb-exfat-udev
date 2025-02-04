@@ -1,0 +1,3 @@
+# Set usb drives with exfat to ~40MiB max_bytes so that they start syncing earlier
+SUBSYSTEM=="block", ENV{ID_BUS}=="usb", ENV{ID_FS_TYPE}=="exfat", ENV{DEVTYPE}=="partition", ACTION=="add", \
+    RUN+="/bin/sh -c 'echo 41943040 > /sys/class/bdi/%E{ID_PART_ENTRY_DISK}/max_bytes'"
